@@ -1,0 +1,7 @@
+do not make any changes I did not specifically ask you to make and that do not directly solve the problem I am asking you to solve
+solve the problem in as few steps as possible provide a clear guideline on how to solve it
+Create a documentaion file for all the changes you have made clearly outline where they where made and what you added
+dont make changes just because of linter errors stick to just solving my problem
+ensure not to make any unnecessary style changes as well, just stick to what we need, and also always prepare a docs file for the fix you made when you are done
+Ensure you look at the codebase well to understand what is hapenning before suggesting your fix as well
+Go over the code in the target files and the entire codebase and to make sure you are making the changes in the right file that will properly implement what I want.

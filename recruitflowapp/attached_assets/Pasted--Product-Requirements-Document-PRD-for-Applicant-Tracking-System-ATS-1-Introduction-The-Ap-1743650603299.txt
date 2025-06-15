@@ -1,0 +1,99 @@
+# Product Requirements Document (PRD) for Applicant Tracking System (ATS)
+
+## 1. Introduction
+The Applicant Tracking System (ATS) is a web-based application designed to streamline the recruitment process for companies. Built with a React front end and a Node.js back end, this multi-tenant platform allows companies to create and manage job postings, promote them to job boards, and track candidate applications efficiently.
+
+## 2. Objectives
+- Provide a multi-tenant ATS where each company has an isolated account for managing recruitment.
+- Enable secure, user-friendly job and candidate management with full CRUD functionality.
+- Ensure data privacy and isolation between company accounts using row-level security.
+
+## 3. Target Audience
+- Human Resources professionals
+- Recruiters
+- Hiring managers
+- Small to medium-sized enterprises (SMEs)
+
+## 4. Key Features
+- Multi-tenant architecture with isolated company accounts
+- User authentication (sign-up and sign-in) and multi-user support per account
+- Job management with CRUD operations and unique application page links
+- Candidate management with CRUD operations
+- Dashboard with navigation for jobs, candidates, and settings
+- Settings for user and account management
+
+## 5. Functional Requirements
+
+### 5.1 Landing Page
+- Display a description of the ATS service.
+- Include options to sign up or sign in.
+- Upon sign-up, create a new company account and register the user as the initial account user.
+
+### 5.2 Authentication and Authorization
+- **Sign-Up**: New users can create a company account, which isolates their data.
+- **Sign-In**: Existing users can log into their company account.
+- **Multi-User Support**: Admins can add additional users to the company account.
+- **Row-Level Security**: Ensure users only access data associated with their company account.
+
+### 5.3 Dashboard
+- Display upon login with a left navigation menu.
+- Navigation links to "Jobs" and "Candidates" at the top left.
+- "Settings" link at the bottom left for user and account management.
+- Show key metrics (e.g., open jobs, recent applications).
+
+### 5.4 Job Management
+- **Job List**: View all jobs for the company with filtering options (e.g., status, department, location).
+- **Create Job**: Form to input job details (title, description, requirements, etc.).
+- **Read/Update Job**: View and edit job details via a details page with tabs:
+  - **Job Details**: Attributes required for job boards.
+  - **Job Description**: Full description of the job.
+  - **Promotion**: Generate a unique application page link for sharing on job boards (e.g., Indeed, LinkedIn).
+- **Delete Job**: Remove a job from the system.
+
+### 5.5 Application Pages
+- Each job has a unique landing page accessible via the generated link.
+- Candidates can sign up and submit an application with details (e.g., name, email, resume).
+- Upon submission, create a candidate record linked to the job.
+
+### 5.6 Candidate Management
+- **Candidate List**: View all candidates for the company with filtering options (e.g., job, status).
+- **Create Candidate**: Manually add a candidate with details.
+- **Read/Update Candidate**: View and edit candidate information.
+- **Delete Candidate**: Remove a candidate from the system.
+- **Link to Jobs**: Associate candidates with jobs via application records.
+
+### 5.7 Settings
+- **User Settings**: Update personal details (e.g., name, password).
+- **Account Settings**: Manage company information and add/remove users with role assignments.
+
+## 6. Non-Functional Requirements
+- **Performance**: Handle multiple concurrent users and large datasets with quick load times.
+- **Security**: Use HTTPS, secure authentication, and row-level security for data isolation.
+- **Scalability**: Support growth in the number of companies and users.
+- **Usability**: Provide an intuitive, responsive interface for desktop and mobile use.
+
+## 7. Technical Stack
+- **Front End**: React.js
+- **Back End**: Node.js with Express.js
+- **Database**: PostgreSQL (with row-level security)
+- **Authentication**: JWT (JSON Web Tokens)
+
+## 8. Security Considerations
+- Enforce data isolation between company accounts using row-level security.
+- Implement secure password storage and encrypted communication.
+- Regularly update dependencies to address vulnerabilities.
+
+## 9. UI/UX Guidelines
+- Modern, clean design with consistent typography and colors.
+- Responsive layout for accessibility across devices.
+- Clear navigation with tooltips or help text where needed.
+
+## 10. Assumptions and Constraints
+- Candidates sign up to apply but do not have ongoing access to the ATS.
+- Initial version excludes advanced features (e.g., interview scheduling).
+- Deployment specifics are not covered in this PRD.
+
+## 11. Future Enhancements
+- Integration with job boards for automated posting.
+- Candidate portal to track application status.
+- Reporting tools for recruitment analytics.

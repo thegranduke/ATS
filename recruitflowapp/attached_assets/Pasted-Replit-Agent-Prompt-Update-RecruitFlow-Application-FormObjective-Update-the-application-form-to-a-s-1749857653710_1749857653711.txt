@@ -1,0 +1,64 @@
+Replit Agent Prompt: Update RecruitFlow Application FormObjective:Update the application form to a single-page design. The final design must perfectly match the provided screenshot (applyjoy-platform 2025-06-13 at 5.29.00 PM.jpg), including all fields, text, and styling.Current File Structure (for reference):templates/apply.html: This is the initial page with the "Apply for this position" button.templates/apply_for_position.html: This is the page with the actual application form fields.static/style.css: This file contains the CSS for both pages.Instructions:Consolidate into a Single Page:Modify apply.html to directly include the entire form, making apply_for_position.html obsolete.The form should be visible on initial page load, with no preliminary button click required.Update Layout and Styling to Match the Screenshot:Logo:At the top-center of the form, display the company logo.This logo must be dynamically pulled from the logo specified in the account settings page of the RecruitFlow application.Header:The main heading's format should be {{ job.title }} - Application. job.title is the dynamic name of the job (e.g., "Real Estate Agent").Beneath the heading, the descriptive text must be: "Please fill out the application as accurately as possible. After submitting we will review your application and get back to you as soon as possible."Form Fields (must be in this order):First Name (Required)Last Name (Required)Email (Required)Phone NumberAddressCV/Resume (Implement a file dropzone that accepts PDF/DOC, as shown in the screenshot).Checkbox: "I am NOT currently a licensed real estate agent in STATE NAME, but would like assistance becoming one"Checkbox: "I AM currently a licensed real estate agent in STATE_NAME"Checkbox: "I agree to receive marketing messaging at the phone number provided above. I understand I will receive messages; Message and data rates may apply; reply STOP to opt-out. Privacy Policy/Terms of Service"Styling (in static/style.css):Container: The entire form must be inside a centered card with a subtle border/shadow, as seen in the screenshot. Give it a max-width of around 600px.Inputs & Labels: Labels should be above the input fields. All text inputs, the file area, and buttons must have rounded corners and padding that match the screenshot.Button: The "Submit Application" button must be full-width (within the card), with the blue background and white text shown in the screenshot.Reference for New apply.html structure:<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply for {{ job.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-container-card">
+        <!-- The logo should be dynamically inserted here from account settings -->
+        <img src="{{ account_logo_url }}" alt="Company Logo" class="logo">
+        
+        <h1>{{ job.title }} - Application</h1>
+        <p>Please fill out the application as accurately as possible. After submitting we will review your application and get back to you as soon as possible.</p>
+        
+        <form action="/apply/{{ job.id }}" method="post" enctype="multipart/form-data">
+            <div class="name-fields">
+                <div class="field-group">
+                    <label for="first_name">First Name *</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                <div class="field-group">
+                    <label for="last_name">Last Name *</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+            </div>
+
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address">
+
+            <label for="resume">CV/Resume</label>
+            <div class="file-drop-zone">
+                <!-- Style this to be a dropzone -->
+                <input type="file" id="resume" name="resume" required>
+                <span>Drop your files here or click to browse</span>
+                <small>PDF or DOC, max 2 files, max 5MB each</small>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="not_licensed" name="not_licensed">
+                <label for="not_licensed">I am NOT currently a licensed real estate agent in STATE NAME, but would like assistance becoming one</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="is_licensed" name="is_licensed">
+                <label for="is_licensed">I AM currently a licensed real estate agent in STATE_NAME</label>
+            </div>
+
+             <div class="checkbox-group">
+                <input type="checkbox" id="agree_marketing" name="agree_marketing" required>
+                <label for="agree_marketing">I agree to receive marketing messaging at the phone number provided above. I understand I will receive messages; Message and data rates may apply; reply STOP to opt-out. Privacy Policy/Terms of Service</label>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
+Final Checklist:Does the UI exactly match the provided screenshot in every detail (fonts, spacing, colors, etc.)?Is the company logo dynamically loaded from account settings?Is the application a single page?Does the heading dynamically display the correct job.title?Are all form fields, including the address field and three checkboxes, present and in the correct order?Has the old apply_for_position.html template been removed or made obsolete?

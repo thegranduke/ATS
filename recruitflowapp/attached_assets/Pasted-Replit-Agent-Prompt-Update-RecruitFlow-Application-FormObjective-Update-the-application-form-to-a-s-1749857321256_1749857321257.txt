@@ -1,0 +1,32 @@
+Replit Agent Prompt: Update RecruitFlow Application FormObjective:Update the application form to a single-page design, combining the application fields and removing the separate job description page. The final design should match the provided screenshot.Current File Structure (for reference):templates/apply.html: This is the initial page with the "Apply for this position" button.templates/apply_for_position.html: This is the page with the actual application form fields.static/style.css: This file contains the CSS for both pages.Instructions:Consolidate into a Single Page:Modify the apply.html file to directly include the form fields from apply_for_position.html.The user should no longer need to click a button to see the form. The form should be visible on the initial page load.Update the Layout and Styling:Header:The main heading should be "Application for Real Estate Agent".Beneath the heading, add the text "Please fill out the form below to apply".Form Fields:The form should contain the following fields in this order:First NameLast NameEmailPhoneResume/CV (as a file upload)Styling (in static/style.css):Container: The form should be centered on the page with a maximum width (e.g., max-width: 500px;).Inputs: All text input fields and the file upload field should have a consistent modern style. Use a light grey border, padding, and rounded corners.Button: The "Submit Application" button should be full-width, with a dark background, white text, and rounded corners.Remove "Apply for this position" button: The initial button on apply.html should be removed.Reference for New apply.html structure:<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Application for Real Estate Agent</h1>
+        <p>Please fill out the form below to apply</p>
+        <form action="/apply/{{ job.id }}" method="post" enctype="multipart/form-data">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" required>
+
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="resume">Resume/CV</label>
+            <input type="file" id="resume" name="resume" required>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
+Final Checklist:Is the application a single page?Does the page title match the job title?Are all the specified form fields present?Is the styling updated to match the screenshot?Has the old apply_for_position.html template been removed or made obsolete?

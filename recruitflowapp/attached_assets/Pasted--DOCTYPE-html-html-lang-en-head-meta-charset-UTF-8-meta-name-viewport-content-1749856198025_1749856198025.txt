@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Agent - Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 0.5rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #2563EB;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+        }
+        .file-dropzone {
+            border: 2px dashed #D1D5DB;
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+        }
+        .file-dropzone:hover {
+            border-color: #2563EB;
+            background-color: #F9FAFB;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+    <div class="max-w-3xl w-full bg-white p-8 sm:p-12 rounded-xl shadow-sm my-8">
+        <!-- Company Logo -->
+        <div class="text-center mb-8">
+            <img src="https://placehold.co/150x50/000000/FFFFFF?text=Ruhl%26Ruhl" alt="Company Logo" class="mx-auto h-12 w-auto">
+            <p class="text-gray-500 mt-2 text-sm">REALTORS</p>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">Real Estate Agent - Application</h1>
+            <p class="mt-4 text-md text-gray-600 max-w-2xl mx-auto">
+                Please fill out the application as accurately as possible. After submitting we will review your application and get back to you as soon as possible.
+            </p>
+        </div>
+
+        <!-- Form -->
+        <form action="#" method="POST" class="space-y-6">
+            <!-- Name Fields -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label for="first-name" class="block text-sm font-medium text-gray-700">First Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="first-name" id="first-name" placeholder="John" class="mt-1 form-input">
+                </div>
+                <div>
+                    <label for="last-name" class="block text-sm font-medium text-gray-700">Last Name <span class="text-red-500">*</span></label>
+                    <input type="text" name="last-name" id="last-name" placeholder="Doe" class="mt-1 form-input">
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email <span class="text-red-500">*</span></label>
+                <input type="email" name="email" id="email" placeholder="you@example.com" class="mt-1 form-input">
+            </div>
+
+            <!-- Phone Number -->
+            <div>
+                <label for="phone-number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input type="tel" name="phone-number" id="phone-number" placeholder="(123) 456-7890" class="mt-1 form-input">
+            </div>
+
+            <!-- Address -->
+            <div>
+                <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                <input type="text" name="address" id="address" placeholder="1234 Main St, City, State, 12345" class="mt-1 form-input">
+            </div>
+
+            <!-- CV/Resume Dropzone -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">CV/Resume</label>
+                <div class="mt-1 file-dropzone">
+                    <div class="flex flex-col items-center">
+                        <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M12 15l-3-3m0 0l3-3m-3 3h12"></path></svg>
+                        <p class="mt-2 text-sm text-gray-600">Drop your files here or <span class="font-medium text-blue-600">click to browse</span></p>
+                        <p class="mt-1 text-xs text-gray-500">PDF or DOC, max 2 files, max 5MB each</p>
+                    </div>
+                    <input id="file-upload" name="file-upload" type="file" class="sr-only" multiple>
+                </div>
+            </div>
+
+            <!-- Checkboxes -->
+            <fieldset class="space-y-4">
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="not-licensed" name="licensing" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="not-licensed" class="font-medium text-gray-700">I am NOT currently a licensed real estate agent in STATE_NAME, but would like assistance becoming one</label>
+                    </div>
+                </div>
+                <div class="relative flex items-start">
+                    <div class="flex items-center h-5">
+                        <input id="is-licensed" name="licensing" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    </div>
+                    <div class="ml-3 text-sm">
+                        <label for="is-licensed" class="font-medium text-gray-700">I AM currently a licensed real estate agent in STATE_NAME</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Terms and Conditions -->
+            <div class="relative flex items-start">
+                <div class="flex items-center h-5">
+                    <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                </div>
+                <div class="ml-3 text-sm">
+                    <label for="terms" class="text-gray-600">I agree to receive marketing messaging at the phone number provided above. I understand I will receive messages; Message and data rates may apply; reply STOP to opt-out. <a href="#" class="font-medium text-blue-600 hover:underline">Privacy Policy/Terms of Service</a></label>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    Submit Application
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

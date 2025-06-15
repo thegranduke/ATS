@@ -1,0 +1,45 @@
+/* Import React Quill styles */
+@import 'react-quill/dist/quill.snow.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom styles for React Quill */
+.ql-editor {
+  min-height: 250px;
+  font-family: inherit;
+}
+
+.quill {
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.ql-toolbar {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  background-color: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+.ql-container {
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  border-color: #e5e7eb;
+}
+
+/* Fix React Quill editor container to properly display content */
+.quill-editor-container .ql-container {
+  height: auto;
+}
